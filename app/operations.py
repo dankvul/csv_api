@@ -7,7 +7,7 @@ possible_datatypes = ['int', 'float', 'datetime', 'date', 'string']
 def get_max(column: int, datatype: str) -> str:
     if datatype not in possible_datatypes:
         raise ArgumentsError
-    target_column = get_target_column(column)
+    target_column: list = get_target_column(column)
     for i in range(len(target_column)):
         target_column[i] = convert(target_column[i], datatype)
     ans = max(target_column)
@@ -23,7 +23,7 @@ def get_max(column: int, datatype: str) -> str:
 def get_min(column: int, datatype: str) -> str:
     if datatype not in possible_datatypes:
         raise ArgumentsError
-    target_column = get_target_column(column)
+    target_column: list = get_target_column(column)
     for i in range(len(target_column)):
         target_column[i] = convert(target_column[i], datatype)
     ans = min(target_column)
@@ -39,7 +39,7 @@ def get_min(column: int, datatype: str) -> str:
 def get_sorted_data(column: int, datatype: str) -> dict:
     if datatype not in possible_datatypes:
         raise ArgumentsError
-    data_from_csv = get_info_from_csv()
+    data_from_csv: dict = get_info_from_csv()
     if column > len(data_from_csv['ColumnName']):
         raise ArgumentsError
     for i in range(len(data_from_csv['body'])):
