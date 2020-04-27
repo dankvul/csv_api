@@ -30,7 +30,7 @@ def get_column_name(column: int) -> str:
     with open(Config.DATAFILE_PATH) as data_file:
         reader = csv.reader(data_file, delimiter=',')
         for row in reader:
-            if column > len(row):
+            if column > len(row) or column <= 0:
                 raise ArgumentsError
             column_name = row[column - 1]
             break
@@ -46,7 +46,7 @@ def get_target_column(column: int) -> list:
             if current_line == 0:
                 current_line += 1
             else:
-                if column > len(row):
+                if column > len(row) or column <= 0:
                     raise ArgumentsError
                 target_column.append(row[column - 1])
     return target_column
