@@ -23,7 +23,7 @@ def gateway():
         try:
             max_from_column = get_max(column, datatype)
             column_name = get_column_name(column)
-        except ArgumentsError and WrongDataError:
+        except ArgumentsError or WrongDataError:
             return '<h1>Bad request</h1>', 400
         return jsonify({column_name: max_from_column})
 
@@ -31,14 +31,14 @@ def gateway():
         try:
             min_from_column = get_min(column, datatype)
             column_name = get_column_name(column)
-        except ArgumentsError and WrongDataError:
+        except ArgumentsError or WrongDataError:
             return '<h1>Bad request</h1>', 400
         return jsonify({column_name: min_from_column})
 
     if operation_type == 'sort':
         try:
             sorted_data = get_sorted_data(column, datatype)
-        except ArgumentsError and WrongDataError:
+        except ArgumentsError or WrongDataError:
             return '<h1>Bad request</h1>', 400
         return jsonify(sorted_data)
     else:
